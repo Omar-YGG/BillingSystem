@@ -29,6 +29,7 @@ namespace Pantalla_Sistema_Facturacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditarProductos));
             this.LblTitulo = new MaterialSkin.Controls.MaterialLabel();
             this.TxtIdProducto = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -45,7 +46,9 @@ namespace Pantalla_Sistema_Facturacion
             this.TxtProducto = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.BtnActualizar = new MaterialSkin.Controls.MaterialRaisedButton();
             this.BtnSalir = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.MensajeError = new System.Windows.Forms.ErrorProvider(this.components);
             this.PnlDatos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MensajeError)).BeginInit();
             this.SuspendLayout();
             // 
             // LblTitulo
@@ -278,6 +281,10 @@ namespace Pantalla_Sistema_Facturacion
             this.BtnSalir.UseVisualStyleBackColor = true;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
+            // MensajeError
+            // 
+            this.MensajeError.ContainerControl = this;
+            // 
             // FrmEditarProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,6 +302,7 @@ namespace Pantalla_Sistema_Facturacion
             this.Load += new System.EventHandler(this.FrmEditarProductos_Load);
             this.PnlDatos.ResumeLayout(false);
             this.PnlDatos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MensajeError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,5 +325,6 @@ namespace Pantalla_Sistema_Facturacion
         private MaterialSkin.Controls.MaterialSingleLineTextField TxtRutaImagen;
         private MaterialSkin.Controls.MaterialLabel LblCategorias;
         private System.Windows.Forms.ComboBox CbbCategorias;
+        private System.Windows.Forms.ErrorProvider MensajeError;
     }
 }

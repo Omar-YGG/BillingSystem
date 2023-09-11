@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Pantalla_Sistema_Facturacion
 {
     public partial class FrmLogin : Form
@@ -29,35 +30,61 @@ namespace Pantalla_Sistema_Facturacion
 
         private void BtnValidar_Click(object sender, EventArgs e)
         {
+
             String Respuesta = "";
-            if (TxtUser.Text != "" && TxtUser.Text != String.Empty && TxtPassword.Text != "")
+
+            if (TxtUser.Text != "" && TxtPassword.Text != String.Empty)
             {
-                if (TxtUser.Text == "admin" && TxtPassword.Text == "1234")
-                    Respuesta = "Administrador pro";
+                Acceso_datos Acceso = new Acceso_datos();
+                Respuesta = Acceso.ValidarUsuario(TxtUser.Text, TxtPassword.Text);
 
                 if (Respuesta != "")
                 {
-                    MessageBox.Show($"Bienvenido queridisimo {Respuesta}");
-                    FrmPrincipal FrmPrin = new FrmPrincipal();
+                    MessageBox.Show($"Bienvenido {Respuesta}");
+                    FrmPrincipal frmppal = new FrmPrincipal();
                     this.Hide();
-                    FrmPrin.Show();
+                    frmppal.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Usuuario y/o Clave incorrectos");
+                    MessageBox.Show("USUARIO O CLAVE NO ENCONTRADOS");
                     TxtUser.Text = "";
-                    TxtPassword.Text = "";
                     TxtUser.Focus();
+                    TxtPassword.Text = "";
                 }
+            }
+            else MessageBox.Show("Debes Ingresar un Usuario y una Contraseña");
 
-            }
-            else
-            {
-                MessageBox.Show("Debes ingresar un usuario y una clave");
-                TxtUser.Text = "";
-                TxtPassword.Text = "";
-                TxtUser.Focus();
-            }
+
+            //String Respuesta = "";
+            //if (TxtUser.Text != "" && TxtUser.Text != String.Empty && TxtPassword.Text != "")
+            //{
+            //    if (TxtUser.Text == "admin" && TxtPassword.Text == "1234")
+            //        Respuesta = "Administrador pro";
+
+            //    if (Respuesta != "")
+            //    {
+            //        MessageBox.Show($"Bienvenido queridisimo {Respuesta}");
+            //        FrmPrincipal FrmPrin = new FrmPrincipal();
+            //        this.Hide();
+            //        FrmPrin.Show();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Usuuario y/o Clave incorrectos");
+            //        TxtUser.Text = "";
+            //        TxtPassword.Text = "";
+            //        TxtUser.Focus();
+            //    }
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Debes ingresar un usuario y una clave");
+            //    TxtUser.Text = "";
+            //    TxtPassword.Text = "";
+            //    TxtUser.Focus();
+            //}
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)

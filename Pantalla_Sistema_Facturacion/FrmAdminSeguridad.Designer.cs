@@ -29,13 +29,18 @@ namespace Pantalla_Sistema_Facturacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LblAdminCuentasSistema = new MaterialSkin.Controls.MaterialLabel();
             this.TxtUsuario = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.BtnActualizar = new MaterialSkin.Controls.MaterialRaisedButton();
             this.BtnSalir = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TxtClave = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.LblEmpleado = new MaterialSkin.Controls.MaterialLabel();
-            this.CbbEmpleados = new System.Windows.Forms.ComboBox();
+            this.CboEmpleados = new System.Windows.Forms.ComboBox();
+            this.BtnNuevo = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.BtnEliminar = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.MensajeError = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.MensajeError)).BeginInit();
             this.SuspendLayout();
             // 
             // LblAdminCuentasSistema
@@ -64,7 +69,7 @@ namespace Pantalla_Sistema_Facturacion
             this.TxtUsuario.SelectedText = "";
             this.TxtUsuario.SelectionLength = 0;
             this.TxtUsuario.SelectionStart = 0;
-            this.TxtUsuario.Size = new System.Drawing.Size(256, 23);
+            this.TxtUsuario.Size = new System.Drawing.Size(357, 23);
             this.TxtUsuario.TabIndex = 1;
             this.TxtUsuario.TabStop = false;
             this.TxtUsuario.UseSystemPasswordChar = false;
@@ -76,7 +81,7 @@ namespace Pantalla_Sistema_Facturacion
             this.BtnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnActualizar.Depth = 0;
             this.BtnActualizar.Icon = null;
-            this.BtnActualizar.Location = new System.Drawing.Point(293, 198);
+            this.BtnActualizar.Location = new System.Drawing.Point(659, 116);
             this.BtnActualizar.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Primary = true;
@@ -93,7 +98,7 @@ namespace Pantalla_Sistema_Facturacion
             this.BtnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnSalir.Depth = 0;
             this.BtnSalir.Icon = null;
-            this.BtnSalir.Location = new System.Drawing.Point(533, 198);
+            this.BtnSalir.Location = new System.Drawing.Point(253, 258);
             this.BtnSalir.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Primary = true;
@@ -107,7 +112,7 @@ namespace Pantalla_Sistema_Facturacion
             // 
             this.TxtClave.Depth = 0;
             this.TxtClave.Hint = "Clave";
-            this.TxtClave.Location = new System.Drawing.Point(253, 157);
+            this.TxtClave.Location = new System.Drawing.Point(253, 155);
             this.TxtClave.MaxLength = 32767;
             this.TxtClave.MouseState = MaterialSkin.MouseState.HOVER;
             this.TxtClave.Name = "TxtClave";
@@ -115,7 +120,7 @@ namespace Pantalla_Sistema_Facturacion
             this.TxtClave.SelectedText = "";
             this.TxtClave.SelectionLength = 0;
             this.TxtClave.SelectionStart = 0;
-            this.TxtClave.Size = new System.Drawing.Size(256, 23);
+            this.TxtClave.Size = new System.Drawing.Size(357, 23);
             this.TxtClave.TabIndex = 6;
             this.TxtClave.TabStop = false;
             this.TxtClave.UseSystemPasswordChar = false;
@@ -133,21 +138,61 @@ namespace Pantalla_Sistema_Facturacion
             this.LblEmpleado.TabIndex = 7;
             this.LblEmpleado.Text = "Empleado";
             // 
-            // CbbEmpleados
+            // CboEmpleados
             // 
-            this.CbbEmpleados.FormattingEnabled = true;
-            this.CbbEmpleados.Location = new System.Drawing.Point(343, 74);
-            this.CbbEmpleados.Name = "CbbEmpleados";
-            this.CbbEmpleados.Size = new System.Drawing.Size(248, 21);
-            this.CbbEmpleados.TabIndex = 8;
+            this.CboEmpleados.FormattingEnabled = true;
+            this.CboEmpleados.Location = new System.Drawing.Point(343, 74);
+            this.CboEmpleados.Name = "CboEmpleados";
+            this.CboEmpleados.Size = new System.Drawing.Size(267, 21);
+            this.CboEmpleados.TabIndex = 8;
+            // 
+            // BtnNuevo
+            // 
+            this.BtnNuevo.AutoSize = true;
+            this.BtnNuevo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnNuevo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnNuevo.Depth = 0;
+            this.BtnNuevo.Icon = null;
+            this.BtnNuevo.Location = new System.Drawing.Point(659, 74);
+            this.BtnNuevo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BtnNuevo.Name = "BtnNuevo";
+            this.BtnNuevo.Primary = true;
+            this.BtnNuevo.Size = new System.Drawing.Size(66, 36);
+            this.BtnNuevo.TabIndex = 9;
+            this.BtnNuevo.Text = "NUEVO";
+            this.BtnNuevo.UseVisualStyleBackColor = true;
+            this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click_1);
+            // 
+            // BtnEliminar
+            // 
+            this.BtnEliminar.AutoSize = true;
+            this.BtnEliminar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnEliminar.Depth = 0;
+            this.BtnEliminar.Icon = null;
+            this.BtnEliminar.Location = new System.Drawing.Point(659, 158);
+            this.BtnEliminar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Primary = true;
+            this.BtnEliminar.Size = new System.Drawing.Size(83, 36);
+            this.BtnEliminar.TabIndex = 10;
+            this.BtnEliminar.Text = "ELIMINAR";
+            this.BtnEliminar.UseVisualStyleBackColor = true;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
+            // 
+            // MensajeError
+            // 
+            this.MensajeError.ContainerControl = this;
             // 
             // FrmAdminSeguridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(228)))), ((int)(((byte)(215)))));
-            this.ClientSize = new System.Drawing.Size(730, 381);
-            this.Controls.Add(this.CbbEmpleados);
+            this.ClientSize = new System.Drawing.Size(801, 365);
+            this.Controls.Add(this.BtnEliminar);
+            this.Controls.Add(this.BtnNuevo);
+            this.Controls.Add(this.CboEmpleados);
             this.Controls.Add(this.LblEmpleado);
             this.Controls.Add(this.TxtClave);
             this.Controls.Add(this.BtnSalir);
@@ -159,6 +204,7 @@ namespace Pantalla_Sistema_Facturacion
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmListaClientes";
             this.Load += new System.EventHandler(this.FrmAdminSeguridad_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.MensajeError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,6 +218,9 @@ namespace Pantalla_Sistema_Facturacion
         private MaterialSkin.Controls.MaterialRaisedButton BtnSalir;
         private MaterialSkin.Controls.MaterialSingleLineTextField TxtClave;
         private MaterialSkin.Controls.MaterialLabel LblEmpleado;
-        private System.Windows.Forms.ComboBox CbbEmpleados;
+        private System.Windows.Forms.ComboBox CboEmpleados;
+        private MaterialSkin.Controls.MaterialRaisedButton BtnNuevo;
+        private MaterialSkin.Controls.MaterialRaisedButton BtnEliminar;
+        private System.Windows.Forms.ErrorProvider MensajeError;
     }
 }

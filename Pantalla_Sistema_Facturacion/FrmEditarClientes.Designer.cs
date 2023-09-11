@@ -29,7 +29,8 @@ namespace Pantalla_Sistema_Facturacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditarProductos));
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditarClientes));
             this.LblTitulo = new MaterialSkin.Controls.MaterialLabel();
             this.TxtIdCliente = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.PnlDatos = new System.Windows.Forms.Panel();
@@ -40,7 +41,9 @@ namespace Pantalla_Sistema_Facturacion
             this.TxtNombre = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.BtnActualizar = new MaterialSkin.Controls.MaterialRaisedButton();
             this.BtnSalir = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.MensajeError = new System.Windows.Forms.ErrorProvider(this.components);
             this.PnlDatos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MensajeError)).BeginInit();
             this.SuspendLayout();
             // 
             // LblTitulo
@@ -205,6 +208,10 @@ namespace Pantalla_Sistema_Facturacion
             this.BtnSalir.UseVisualStyleBackColor = true;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
+            // MensajeError
+            // 
+            this.MensajeError.ContainerControl = this;
+            // 
             // FrmEditarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,6 +228,7 @@ namespace Pantalla_Sistema_Facturacion
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmEditarClientes_Load);
             this.PnlDatos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MensajeError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,5 +246,6 @@ namespace Pantalla_Sistema_Facturacion
         private MaterialSkin.Controls.MaterialSingleLineTextField TxtNombre;
         private MaterialSkin.Controls.MaterialRaisedButton BtnActualizar;
         private MaterialSkin.Controls.MaterialRaisedButton BtnSalir;
+        private System.Windows.Forms.ErrorProvider MensajeError;
     }
 }

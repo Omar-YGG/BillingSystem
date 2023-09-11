@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Pantalla_Sistema_Facturacion
 {
@@ -17,16 +18,36 @@ namespace Pantalla_Sistema_Facturacion
             InitializeComponent();
         }
 
+        DataTable dt = new DataTable();  //Se crea el objeto datatable para almacenar lo consultado
+        Acceso_datos Acceso = new Acceso_datos();  //Se crea el objeto d clase acceso_datos
+
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
+            if (TxtBuscarCategoria.Text != "")
+            {
+                DgCategorias.Rows.Clear();
+                String sentencia = $"SELECT * FROM TBLCATEGORIA_PROD WHERE strDescripcion LIKE '%{TxtBuscarCategoria.Text}%'"; //sentencia para consultar por nombre
+                dt = Acceso.EjecutarComandoDatos(sentencia);
 
+                foreach (DataRow row in dt.Rows)
+                {
+                    DgCategorias.Rows.Add(row[0], row[1]);
+                }
+                TxtBuscarCategoria.Text = "";
+            }
+            else LlenarGrid();
         }
 
         public void LlenarGrid()
         {
-            for (int i=1; i<10; i++)
+            DgCategorias.Rows.Clear();
+
+            String sentencia = $"SELECT IdCategoria, StrDescripcion FROM TBLCATEGORIA_PROD"; //sentencia para traer la info d la tblclientes
+            dt = Acceso.EjecutarComandoDatos(sentencia); //invocacion metodo ejecutar... para ejecutar la sentencia anterior
+
+            foreach (DataRow row in dt.Rows)
             {
-                DgCategorias.Rows.Add(i, $"descricion de categoria #{i}:jdfsghhrh");
+                DgCategorias.Rows.Add(row[0], row[1]);
             }
         }
 
@@ -42,23 +63,38 @@ namespace Pantalla_Sistema_Facturacion
             Categoria.ShowDialog();
         }
 
+
         private void DgCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int posActual = 0;
 
+            //boton eliminar
             if (DgCategorias.Columns[e.ColumnIndex].Name == "BtnBorrar")
             {
                 posActual = DgCategorias.CurrentRow.Index;
-                if (MessageBox.Show("¿Seguro de Borrar?", "CONFIRMACON", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    MessageBox.Show($"BORRANDO indice {e.RowIndex} ID {DgCategorias[0,posActual].Value.ToString()}");
+
+                //mensaje d confirmacion d borrado
+                if (MessageBox.Show($"¿Seguro de Borrar Categoria: {DgCategorias[1, posActual].Value.ToString()}?", "CONFIRMACON", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    //invocacion del procedimiento almacenado de eliminar cliente y se pasa como parametro el IdCliente
+                    int IdCategoria = Convert.ToInt32(DgCategorias[0, posActual].Value.ToString()); //se lee el IDCliente a borrar del grid
+                    String sentencia = $"EXEC Eliminar_CategoriaProducto '{IdCategoria}'";
+                    String Mensaje = Acceso.EjecutarComando(sentencia);
+                    MessageBox.Show(Mensaje);
+                }
             }
+
+            //bton editar
             if (DgCategorias.Columns[e.ColumnIndex].Name == "BtnEditar")
             {
                 posActual = DgCategorias.CurrentRow.Index;
-                FrmEditarCategorias Producto = new FrmEditarCategorias();
-                Producto.IdCategoria = int.Parse(DgCategorias[0,posActual].Value.ToString());
-                Producto.ShowDialog();
+                FrmEditarCategorias Categoria = new FrmEditarCategorias();
+
+                // se pasan los parametros a editar del grid al frmeditarcliente
+                Categoria.IdCategoria = int.Parse(DgCategorias[0, posActual].Value.ToString());
+                Categoria.ShowDialog();
             }
+            LlenarGrid();
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)

@@ -29,14 +29,17 @@ namespace Pantalla_Sistema_Facturacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditarCategorias));
             this.LblTitulo = new MaterialSkin.Controls.MaterialLabel();
             this.TxtIdCategoria = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.PnlDatos = new System.Windows.Forms.Panel();
+            this.TxtCategoria = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.BtnActualizar = new MaterialSkin.Controls.MaterialRaisedButton();
             this.BtnSalir = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.TxtCategoria = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.MensajeError = new System.Windows.Forms.ErrorProvider(this.components);
             this.PnlDatos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MensajeError)).BeginInit();
             this.SuspendLayout();
             // 
             // LblTitulo
@@ -79,6 +82,23 @@ namespace Pantalla_Sistema_Facturacion
             this.PnlDatos.Size = new System.Drawing.Size(468, 155);
             this.PnlDatos.TabIndex = 2;
             // 
+            // TxtCategoria
+            // 
+            this.TxtCategoria.Depth = 0;
+            this.TxtCategoria.Hint = "Nombre Categoria";
+            this.TxtCategoria.Location = new System.Drawing.Point(26, 40);
+            this.TxtCategoria.MaxLength = 32767;
+            this.TxtCategoria.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TxtCategoria.Name = "TxtCategoria";
+            this.TxtCategoria.PasswordChar = '\0';
+            this.TxtCategoria.SelectedText = "";
+            this.TxtCategoria.SelectionLength = 0;
+            this.TxtCategoria.SelectionStart = 0;
+            this.TxtCategoria.Size = new System.Drawing.Size(400, 23);
+            this.TxtCategoria.TabIndex = 0;
+            this.TxtCategoria.TabStop = false;
+            this.TxtCategoria.UseSystemPasswordChar = false;
+            // 
             // BtnActualizar
             // 
             this.BtnActualizar.AutoSize = true;
@@ -111,22 +131,9 @@ namespace Pantalla_Sistema_Facturacion
             this.BtnSalir.UseVisualStyleBackColor = true;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
-            // TxtCategoria
+            // MensajeError
             // 
-            this.TxtCategoria.Depth = 0;
-            this.TxtCategoria.Hint = "Nombre Categoria";
-            this.TxtCategoria.Location = new System.Drawing.Point(26, 40);
-            this.TxtCategoria.MaxLength = 32767;
-            this.TxtCategoria.MouseState = MaterialSkin.MouseState.HOVER;
-            this.TxtCategoria.Name = "TxtCategoria";
-            this.TxtCategoria.PasswordChar = '\0';
-            this.TxtCategoria.SelectedText = "";
-            this.TxtCategoria.SelectionLength = 0;
-            this.TxtCategoria.SelectionStart = 0;
-            this.TxtCategoria.Size = new System.Drawing.Size(400, 23);
-            this.TxtCategoria.TabIndex = 0;
-            this.TxtCategoria.TabStop = false;
-            this.TxtCategoria.UseSystemPasswordChar = false;
+            this.MensajeError.ContainerControl = this;
             // 
             // FrmEditarCategorias
             // 
@@ -144,6 +151,7 @@ namespace Pantalla_Sistema_Facturacion
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmEditarCategorias_Load);
             this.PnlDatos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MensajeError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,5 +165,6 @@ namespace Pantalla_Sistema_Facturacion
         private MaterialSkin.Controls.MaterialRaisedButton BtnActualizar;
         private MaterialSkin.Controls.MaterialRaisedButton BtnSalir;
         private MaterialSkin.Controls.MaterialSingleLineTextField TxtCategoria;
+        private System.Windows.Forms.ErrorProvider MensajeError;
     }
 }
